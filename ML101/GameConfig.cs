@@ -10,7 +10,7 @@ namespace ML101
     {
         private int poolSize;
         private int sticks;
-        private List<int>[] pool;
+        public List<int>[] pool;
 
         public GameConfig(int numberOfSticks)
         {
@@ -25,8 +25,7 @@ namespace ML101
             {
                 pool[position] = new List<int>();
                 ListFill(position);
-            }
-             
+            }                      
         }
         private void ListFill(int position)
         {
