@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace ML101
 {
-    class GameConfig
+     public class GameConfig
     {
         private int poolSize;
-        private int sticks;
+        private int numberOfSticks;
         public List<int>[] pool;
 
-        public GameConfig(int numberOfSticks)
+        public GameConfig(int sticks)
         {
-            sticks = numberOfSticks;
-            poolSize = numberOfSticks;
+            numberOfSticks = sticks;
+            poolSize = sticks;
             pool = new List<int>[poolSize];
+            LegalMove = true;
         }
-
+        public bool LegalMove { get; }
         public void  AllocatePool()
         {
             for (int position = 0; position < poolSize; position++)
@@ -27,6 +28,22 @@ namespace ML101
                 ListFill(position);
             }                      
         }
+
+        public void PlayerTurn(int number)
+        {
+            if (!CheckIfLegal(number))
+                return;
+            if (number > numberOfSticks)
+                return;
+            numberOfSticks -= number;
+
+        }
+
+        private bool CheckIfLegal(int number)
+        {
+            return (number > 0 && number < 4);
+        }
+
         private void ListFill(int position)
         {
             pool[position].Add(1);
