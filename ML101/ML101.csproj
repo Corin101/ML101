@@ -57,6 +57,18 @@
     </Compile>
     <Compile Include="Game.cs" />
     <Compile Include="GameConfig.cs" />
+    <Compile Include="GameEnd.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GameEnd.Designer.cs">
+      <DependentUpon>GameEnd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputSticksError.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputSticksError.Designer.cs">
+      <DependentUpon>InputSticksError.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -68,6 +80,12 @@
     <Compile Include="TesterClass.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameEnd.resx">
+      <DependentUpon>GameEnd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputSticksError.resx">
+      <DependentUpon>InputSticksError.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
