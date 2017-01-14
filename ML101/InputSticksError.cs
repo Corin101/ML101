@@ -15,6 +15,8 @@ namespace ML101
         public InputSticksError()
         {
             InitializeComponent();
+            pictureBox1.ImageLocation = @"img\wns.bmp";
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
         }
     }
 }

@@ -15,11 +15,8 @@ namespace ML101
         public GameEnd()
         {
             InitializeComponent();
-        }
-
-        private void GameWon_Load(object sender, EventArgs e)
-        {
-            pictureBox1.Image = Image.FromFile("win.bmp");
+            pictureBox1.ImageLocation = @"img\win.bmp";
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
         }
     }
 }

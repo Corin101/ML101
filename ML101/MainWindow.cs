@@ -15,6 +15,10 @@ namespace ML101
         public MainWindow()
         {
             InitializeComponent();
+            pictureBox1.ImageLocation = @"img\main.bmp";
+            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+
         }
+
     }
 }

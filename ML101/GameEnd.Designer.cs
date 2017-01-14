@@ -36,15 +36,16 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(86, 65);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 356);
+            this.pictureBox1.Size = new System.Drawing.Size(832, 608);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // PlayAgainButton
             // 
-            this.PlayAgainButton.Location = new System.Drawing.Point(201, 490);
+            this.PlayAgainButton.Location = new System.Drawing.Point(149, 514);
             this.PlayAgainButton.Name = "PlayAgainButton";
             this.PlayAgainButton.Size = new System.Drawing.Size(103, 38);
             this.PlayAgainButton.TabIndex = 1;
@@ -53,14 +54,14 @@
             // 
             // ExitGameButton
             // 
-            this.ExitGameButton.Location = new System.Drawing.Point(498, 490);
+            this.ExitGameButton.Location = new System.Drawing.Point(577, 513);
             this.ExitGameButton.Name = "ExitGameButton";
             this.ExitGameButton.Size = new System.Drawing.Size(103, 38);
             this.ExitGameButton.TabIndex = 2;
             this.ExitGameButton.Text = "Exit Game";
             this.ExitGameButton.UseVisualStyleBackColor = true;
             // 
-            // GameWon
+            // GameEnd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -68,9 +69,8 @@
             this.Controls.Add(this.ExitGameButton);
             this.Controls.Add(this.PlayAgainButton);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "GameWon";
+            this.Name = "GameEnd";
             this.Size = new System.Drawing.Size(832, 608);
-            this.Load += new System.EventHandler(this.GameWon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
