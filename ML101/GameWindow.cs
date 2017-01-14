@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace ML101
 {
-    public partial class InputSticksError : UserControl
+    public partial class GameWindow : UserControl
     {
-        public InputSticksError()
+        public GameWindow()
         {
             InitializeComponent();
-            pictureBox1.ImageLocation = @"img\wns.bmp";
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
         }
+
+
     }
 }

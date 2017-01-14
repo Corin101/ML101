@@ -53,6 +53,7 @@
             this.StartGameButton.TabIndex = 1;
             this.StartGameButton.Text = "Start Game";
             this.StartGameButton.UseVisualStyleBackColor = true;
+            this.StartGameButton.Click += new System.EventHandler(this.StartGameButton_Click);
             // 
             // RulesButton
             // 
@@ -62,6 +63,7 @@
             this.RulesButton.TabIndex = 2;
             this.RulesButton.Text = "Rules";
             this.RulesButton.UseVisualStyleBackColor = true;
+            this.RulesButton.Click += new System.EventHandler(this.RulesButton_Click);
             // 
             // AboutButton
             // 
@@ -71,6 +73,7 @@
             this.AboutButton.TabIndex = 3;
             this.AboutButton.Text = "About";
             this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
             // 
             // MainWindow
             // 
