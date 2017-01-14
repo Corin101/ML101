@@ -23,6 +23,7 @@ namespace ML101
             gameOptions1.Visible = false;
 
             CenterWindows();
+            Subscribe();
         }
 
         public void Subscribe()
