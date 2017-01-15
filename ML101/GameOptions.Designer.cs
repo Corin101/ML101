@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.StartButton = new System.Windows.Forms.Button();
             this.SticksTextBox = new System.Windows.Forms.TextBox();
             this.PlayerNameTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.StartToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // StartButton
@@ -43,6 +45,8 @@
             this.StartButton.Size = new System.Drawing.Size(103, 38);
             this.StartButton.TabIndex = 11;
             this.StartButton.Text = "Start";
+            this.StartToolTip.SetToolTip(this.StartButton, "Yes, this is the Start button, and yes, you really do have\r\nto press this button " +
+        "in order to continue.\r\nC\'mon! Press it, you know you want to!");
             this.StartButton.UseVisualStyleBackColor = true;
             // 
             // SticksTextBox
@@ -53,6 +57,8 @@
             this.SticksTextBox.Name = "SticksTextBox";
             this.SticksTextBox.Size = new System.Drawing.Size(40, 27);
             this.SticksTextBox.TabIndex = 10;
+            this.StartToolTip.SetToolTip(this.SticksTextBox, "Enter the number of Sticks you want at the start of the\r\ngame. The number must be" +
+        " bigger than 5, and just for\r\nthe fun of it, i\'ll limit the max number to 50.");
             // 
             // PlayerNameTextBox
             // 
@@ -62,6 +68,8 @@
             this.PlayerNameTextBox.Name = "PlayerNameTextBox";
             this.PlayerNameTextBox.Size = new System.Drawing.Size(189, 27);
             this.PlayerNameTextBox.TabIndex = 9;
+            this.StartToolTip.SetToolTip(this.PlayerNameTextBox, "Player Name goes here. If you\'re too lazy to enter a name\r\nI\'ll just call you Pla" +
+        "yer1.");
             // 
             // label3
             // 
@@ -73,6 +81,8 @@
             this.label3.Size = new System.Drawing.Size(143, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "Number of Sticks:";
+            this.StartToolTip.SetToolTip(this.label3, "Enter the number of Sticks you want at the start of the\r\ngame. The number must be" +
+        " bigger than 5, and just for\r\nthe fun of it, i\'ll limit the max number to 50.");
             // 
             // label2
             // 
@@ -84,6 +94,8 @@
             this.label2.Size = new System.Drawing.Size(110, 20);
             this.label2.TabIndex = 7;
             this.label2.Text = "Player Name:";
+            this.StartToolTip.SetToolTip(this.label2, "Player Name goes here. If you\'re too lazy to enter a name\r\nI\'ll just call you Pla" +
+        "yer1.");
             // 
             // label1
             // 
@@ -122,5 +134,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolTip StartToolTip;
     }
 }
