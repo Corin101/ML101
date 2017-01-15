@@ -17,10 +17,11 @@ namespace ML101
             InitializeComponent();
             gameEnd1.Visible = false;
             inputSticksError1.Visible = false;
-            mainWindow1.Visible = true;
+            mainWindow1.Visible = false;
             about1.Visible = false;
             gameWindow1.Visible = false;
             gameOptions1.Visible = false;
+            rules1.Visible = true;
 
             CenterWindows();
             Subscribe();
@@ -57,6 +58,7 @@ namespace ML101
             CenterWindow(about1);
             CenterWindow(gameWindow1);
             CenterWindow(gameOptions1);
+            CenterWindow(rules1);
         }
         private void CenterWindow(UserControl control)
         {

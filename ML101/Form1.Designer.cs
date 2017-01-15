@@ -28,14 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.gameOptions1 = new ML101.GameOptions();
+            this.gameWindow1 = new ML101.GameWindow();
             this.about1 = new ML101.About();
             this.gameEnd1 = new ML101.GameEnd();
             this.inputSticksError1 = new ML101.InputSticksError();
             this.mainWindow1 = new ML101.MainWindow();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.gameWindow1 = new ML101.GameWindow();
-            this.gameOptions1 = new ML101.GameOptions();
+            this.rules1 = new ML101.Rules();
             this.SuspendLayout();
+            // 
+            // gameOptions1
+            // 
+            this.gameOptions1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.gameOptions1.Location = new System.Drawing.Point(169, 81);
+            this.gameOptions1.Name = "gameOptions1";
+            this.gameOptions1.Size = new System.Drawing.Size(832, 608);
+            this.gameOptions1.TabIndex = 5;
+            // 
+            // gameWindow1
+            // 
+            this.gameWindow1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.gameWindow1.Location = new System.Drawing.Point(169, 81);
+            this.gameWindow1.Name = "gameWindow1";
+            this.gameWindow1.Size = new System.Drawing.Size(832, 608);
+            this.gameWindow1.TabIndex = 4;
             // 
             // about1
             // 
@@ -69,21 +86,13 @@
             this.mainWindow1.Size = new System.Drawing.Size(832, 608);
             this.mainWindow1.TabIndex = 0;
             // 
-            // gameWindow1
+            // rules1
             // 
-            this.gameWindow1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.gameWindow1.Location = new System.Drawing.Point(169, 81);
-            this.gameWindow1.Name = "gameWindow1";
-            this.gameWindow1.Size = new System.Drawing.Size(832, 608);
-            this.gameWindow1.TabIndex = 4;
-            // 
-            // gameOptions1
-            // 
-            this.gameOptions1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.gameOptions1.Location = new System.Drawing.Point(169, 81);
-            this.gameOptions1.Name = "gameOptions1";
-            this.gameOptions1.Size = new System.Drawing.Size(832, 608);
-            this.gameOptions1.TabIndex = 5;
+            this.rules1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.rules1.Location = new System.Drawing.Point(169, 81);
+            this.rules1.Name = "rules1";
+            this.rules1.Size = new System.Drawing.Size(832, 608);
+            this.rules1.TabIndex = 6;
             // 
             // Form1
             // 
@@ -91,6 +100,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1205, 838);
+            this.Controls.Add(this.rules1);
             this.Controls.Add(this.gameOptions1);
             this.Controls.Add(this.gameWindow1);
             this.Controls.Add(this.about1);
@@ -112,5 +122,6 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private GameWindow gameWindow1;
         private GameOptions gameOptions1;
+        private Rules rules1;
     }
 }
