@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace ML101
 {
-    public delegate void ButtonHandler(string buttonId);
+    public delegate void MainWindowHandler(string buttonId);
     public partial class MainWindow : UserControl
     {
         
-        public event ButtonHandler ButtonClick;
+        public event MainWindowHandler ButtonClick;
         public MainWindow()
         {
             InitializeComponent();

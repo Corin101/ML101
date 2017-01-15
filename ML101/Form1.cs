@@ -15,14 +15,7 @@ namespace ML101
         public Form1()
         {
             InitializeComponent();
-            gameEnd1.Visible = false;
-            inputSticksError1.Visible = false;
-            mainWindow1.Visible = false;
-            about1.Visible = false;
-            gameWindow1.Visible = false;
-            gameOptions1.Visible = false;
-            rules1.Visible = true;
-
+            InitialWindowState();
             CenterWindows();
             Subscribe();
         }
@@ -30,6 +23,20 @@ namespace ML101
         public void Subscribe()
         {
             mainWindow1.ButtonClick += MainWindow1_ButtonClick;
+            rules1.ButtonClick += Rules1_ButtonClick;
+            about1.ButtonClick += About1_ButtonClick;
+        }
+
+        private void About1_ButtonClick(string buttonId)
+        {
+            about1.Visible = false;
+            mainWindow1.Visible = true;
+        }
+
+        private void Rules1_ButtonClick(string buttonId)
+        {
+            rules1.Visible = false;
+            mainWindow1.Visible = true;
         }
 
         private void MainWindow1_ButtonClick(string buttonId)
@@ -46,9 +53,20 @@ namespace ML101
                     break;
                 case "Rules":
                     mainWindow1.Visible = false;
+                    rules1.Visible = true;
                     break; 
             }
+        }
 
+        private void InitialWindowState()
+        {
+            gameEnd1.Visible = false;
+            inputSticksError1.Visible = false;
+            mainWindow1.Visible = true;
+            about1.Visible = false;
+            gameWindow1.Visible = false;
+            gameOptions1.Visible = false;
+            rules1.Visible = false;
         }
         private void CenterWindows()
         {

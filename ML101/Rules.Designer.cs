@@ -50,6 +50,7 @@
             this.OkButton.TabIndex = 1;
             this.OkButton.Text = "Got it!";
             this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // Rules
             // 
