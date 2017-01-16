@@ -37,7 +37,7 @@ namespace ML101
             gameWindow1.Visible = true;
         }
 
-        private void GameWindow1_StickPickError()
+        private void GameWindow1_StickPickError(bool condition)
         {
             gameWindow1.Visible = false;
             inputSticksError1.Visible = true;

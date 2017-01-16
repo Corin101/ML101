@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace ML101
 {
-    public delegate void GameWindowHandler();
+    public delegate void GameWindowHandler(bool condition);
     public partial class GameWindow : UserControl
     {
         public event GameWindowHandler StickPickError;
+        public event GameWindowHandler VictoryCondition;
         GameConfig game;
         public GameWindow()
         {
@@ -29,6 +30,7 @@ namespace ML101
             DisplayTextBox.AppendText(Environment.NewLine);
             DisplayTextBox.AppendText("Sticks left in the game:: ");
             DisplayTextBox.AppendText(SticksInGame.Text);
+            DisplayTextBox.AppendText(Environment.NewLine);
         }
         private void PlayerPickTextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -43,16 +45,35 @@ namespace ML101
             LegalMoveCheck();  
         }
 
+        private void CheckVictory()
+        {
+            
+
+                
+        }
+
         private void LegalMoveCheck()
         {
             int sticksPicked = 0;
             if (PlayerPickTextBox.Text == "")
+            {
                 StickPickError();
-            else
-                sticksPicked = Int32.Parse(PlayerPickTextBox.Text);
-            if (sticksPicked < 1 || sticksPicked > 3)
-                StickPickError();
+                return;
+            }
 
+            sticksPicked = Int32.Parse(PlayerPickTextBox.Text);
+
+            if (sticksPicked < 1 || sticksPicked > 3)
+            {
+                StickPickError();
+                return;
+            }
+            if (sticksPicked > Int32.Parse(SticksInGame.Text))
+            {
+                StickPickError();
+                return;
+            }
+            return;
         }
     }
 }
