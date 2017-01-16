@@ -27,7 +27,33 @@ namespace ML101
             about1.ButtonClick += About1_ButtonClick;
             gameOptions1.ButtonClick += GameOptions1_ButtonClick;
             gameWindow1.StickPickError += GameWindow1_StickPickError;
+            gameWindow1.VictoryCondition += GameWindow1_VictoryCondition;
             inputSticksError1.ErrorResolved += InputSticksError1_ErrorResolved;
+            gameEnd1.AfterEndDecision += GameEnd1_AfterEndDecision;
+        }
+
+        private void GameEnd1_AfterEndDecision(string decision)
+        {
+            if (decision == "Play")
+                Application.Exit();
+            if (decision == "Exit")
+                Application.Exit();
+        }
+
+        private void GameWindow1_VictoryCondition(bool? condition = default(bool?))
+        {
+            if (condition == true)
+            {
+                gameWindow1.Visible = false;
+                gameEnd1.pictureBox1.ImageLocation = @"img\win.bmp";
+                gameEnd1.Visible = true;
+            }
+            if (condition == false)
+            {
+                gameWindow1.Visible = false;
+                gameEnd1.pictureBox1.ImageLocation = @"img\lost.bmp";
+                gameEnd1.Visible = true;
+            }
         }
 
         private void InputSticksError1_ErrorResolved()
@@ -37,7 +63,7 @@ namespace ML101
             gameWindow1.Visible = true;
         }
 
-        private void GameWindow1_StickPickError(bool condition)
+        private void GameWindow1_StickPickError(bool? condition)
         {
             gameWindow1.Visible = false;
             inputSticksError1.Visible = true;

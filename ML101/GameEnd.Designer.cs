@@ -51,6 +51,7 @@
             this.PlayAgainButton.TabIndex = 1;
             this.PlayAgainButton.Text = "Play Again";
             this.PlayAgainButton.UseVisualStyleBackColor = true;
+            this.PlayAgainButton.Click += new System.EventHandler(this.PlayAgainButton_Click);
             // 
             // ExitGameButton
             // 
@@ -60,6 +61,7 @@
             this.ExitGameButton.TabIndex = 2;
             this.ExitGameButton.Text = "Exit Game";
             this.ExitGameButton.UseVisualStyleBackColor = true;
+            this.ExitGameButton.Click += new System.EventHandler(this.ExitGameButton_Click);
             // 
             // GameEnd
             // 
@@ -78,7 +80,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button PlayAgainButton;
         private System.Windows.Forms.Button ExitGameButton;
     }

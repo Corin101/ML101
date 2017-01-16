@@ -10,13 +10,24 @@ using System.Windows.Forms;
 
 namespace ML101
 {
+    public delegate void GameEndHandler(string decision);
     public partial class GameEnd : UserControl
     {
+        public event GameEndHandler AfterEndDecision;
         public GameEnd()
         {
-            InitializeComponent();
-            pictureBox1.ImageLocation = @"img\win.bmp";
+            InitializeComponent();           
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+        }
+
+        private void PlayAgainButton_Click(object sender, EventArgs e)
+        {
+            AfterEndDecision("Play");
+        }
+
+        private void ExitGameButton_Click(object sender, EventArgs e)
+        {
+            AfterEndDecision("Exit");
         }
     }
 }
