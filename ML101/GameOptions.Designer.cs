@@ -36,6 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.StartToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.WarningLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // StartButton
@@ -48,17 +49,20 @@
             this.StartToolTip.SetToolTip(this.StartButton, "Yes, this is the Start button, and yes, you really do have\r\nto press this button " +
         "in order to continue.\r\nC\'mon! Press it, you know you want to!");
             this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // SticksTextBox
             // 
             this.SticksTextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.SticksTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SticksTextBox.Location = new System.Drawing.Point(412, 268);
+            this.SticksTextBox.MaxLength = 2;
             this.SticksTextBox.Name = "SticksTextBox";
             this.SticksTextBox.Size = new System.Drawing.Size(40, 27);
             this.SticksTextBox.TabIndex = 10;
             this.StartToolTip.SetToolTip(this.SticksTextBox, "Enter the number of Sticks you want at the start of the\r\ngame. The number must be" +
         " bigger than 5, and just for\r\nthe fun of it, i\'ll limit the max number to 50.");
+            this.SticksTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SticksTextBox_KeyDown);
             // 
             // PlayerNameTextBox
             // 
@@ -108,11 +112,23 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Options:";
             // 
+            // WarningLabel
+            // 
+            this.WarningLabel.AutoSize = true;
+            this.WarningLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.WarningLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.WarningLabel.Location = new System.Drawing.Point(259, 341);
+            this.WarningLabel.Name = "WarningLabel";
+            this.WarningLabel.Size = new System.Drawing.Size(342, 20);
+            this.WarningLabel.TabIndex = 12;
+            this.WarningLabel.Text = "Number of sticks must be between 5 and 50!";
+            // 
             // GameOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Controls.Add(this.WarningLabel);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.SticksTextBox);
             this.Controls.Add(this.PlayerNameTextBox);
@@ -135,5 +151,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip StartToolTip;
+        private System.Windows.Forms.Label WarningLabel;
     }
 }

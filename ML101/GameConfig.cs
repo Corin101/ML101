@@ -9,17 +9,19 @@ namespace ML101
      public class GameConfig
     {
         private int poolSize;
-        private int numberOfSticks;
         public List<int>[] pool;
 
-        public GameConfig(int sticks)
+        public GameConfig(int sticks, string name)
         {
-            numberOfSticks = sticks;
+            NumberOfSticks = sticks;
             poolSize = sticks;
             pool = new List<int>[poolSize];
             LegalMove = true;
+            PlayerName = name;
         }
         public bool LegalMove { get; }
+        public string PlayerName { get; set; }
+        public int NumberOfSticks { get; set; }
         public void  AllocatePool()
         {
             for (int position = 0; position < poolSize; position++)
@@ -33,9 +35,9 @@ namespace ML101
         {
             if (!CheckIfLegal(number))
                 return;
-            if (number > numberOfSticks)
+            if (number > NumberOfSticks)
                 return;
-            numberOfSticks -= number;
+            NumberOfSticks -= number;
 
         }
 

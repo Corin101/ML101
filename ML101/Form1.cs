@@ -14,7 +14,7 @@ namespace ML101
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent();         
             InitialWindowState();
             CenterWindows();
             Subscribe();
@@ -25,6 +25,31 @@ namespace ML101
             mainWindow1.ButtonClick += MainWindow1_ButtonClick;
             rules1.ButtonClick += Rules1_ButtonClick;
             about1.ButtonClick += About1_ButtonClick;
+            gameOptions1.ButtonClick += GameOptions1_ButtonClick;
+            gameWindow1.StickPickError += GameWindow1_StickPickError;
+            inputSticksError1.ErrorResolved += InputSticksError1_ErrorResolved;
+        }
+
+        private void InputSticksError1_ErrorResolved()
+        {
+            gameWindow1.PlayerPickTextBox.Text = "";
+            inputSticksError1.Visible = false;
+            gameWindow1.Visible = true;
+        }
+
+        private void GameWindow1_StickPickError()
+        {
+            gameWindow1.Visible = false;
+            inputSticksError1.Visible = true;
+        }
+
+        private void GameOptions1_ButtonClick(string playerName, string NumOfSticks)
+        {
+            gameOptions1.Visible = false;
+            gameWindow1.Visible = true;
+            gameWindow1.PlayerNameLabel.Text = playerName;
+            gameWindow1.SticksInGame.Text = NumOfSticks;
+            gameWindow1.StartGame();
         }
 
         private void About1_ButtonClick(string buttonId)
