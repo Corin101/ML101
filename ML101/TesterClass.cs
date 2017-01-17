@@ -10,14 +10,13 @@ namespace ML101
     {
         static void Main(string[] args)
         {
-            //GameConfig test = new GameConfig(5);
+            //GameConfig test = new GameConfig(5, "jura");
             //test.AllocatePool();
-
-            //Console.WriteLine(test.pool[0][0]);
-            //Console.WriteLine(test.pool[0][1]);
-            //Console.WriteLine(test.pool[0][2]);
-            //Console.WriteLine(test.pool[1][2]);
-
+            //test.memory[3] = 3;
+            //test.memory[2] = 2;
+            //test.memory[4] = 1;
+            //test.SaveSoftMemory("blah");
+       
             //Console.ReadLine();
         }
     }

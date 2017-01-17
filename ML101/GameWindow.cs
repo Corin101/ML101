@@ -15,27 +15,66 @@ namespace ML101
     {
         public event GameWindowHandler StickPickError;
         public event GameWindowHandler VictoryCondition;
+        public event GameWindowHandler AnotherGame;
         GameConfig game;
         public GameWindow()
         {
             InitializeComponent();        
         }
-
+        /* start game method, configures the array and it's list (allocating the initial options) */
         public void StartGame()
         {
             game = new GameConfig(Int32.Parse(SticksInGame.Text), PlayerNameLabel.Text);
             game.AllocatePool();
+            NewDisplay();
+        }
+        private void NewDisplay( bool NewGame = true)
+        {
+            DisplayTextBox.Clear();
+            if (NewGame == false)
+            {
+                DisplayTextBox.AppendText("Game Status:: Won: " + game.gamescore[0] + " Lost: " + game.gamescore[1]);
+                DisplayTextBox.AppendText(Environment.NewLine);
+            }
             DisplayTextBox.AppendText("Welcome to the game, " + PlayerNameLabel.Text + " will start the game!");
             DisplayTextBox.AppendText(Environment.NewLine);
             DisplayTextBox.AppendText("Sticks left in the game:: " + SticksInGame.Text);
             DisplayTextBox.AppendText(Environment.NewLine);
         }
+        /* checkup if enter is pressed */
         private void PlayerPickTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 takeButton_Click(this, new EventArgs());
             }
+        }
+        public void NewGame(string condition)
+        {
+            if (game.VictoryCondition == true)
+            {
+                game.SaveSoftMemory();            
+                game.gamescore[0] += 1;
+                SetNewGame();
+            }
+            else
+            {
+                game.NewMemory();
+                game.gamescore[1] += 1;
+                SetNewGame();
+            }
+            if (condition == "exit")
+                game.SaveHardMemory();
+        }
+
+        private void SetNewGame()
+        {
+            game.NumberOfSticks = game.poolSize;
+            SticksInGame.Text = game.NumberOfSticks.ToString();
+            PlayerNameLabel.Text = game.PlayerName;
+            game.VictoryCondition = null;
+            NewDisplay(false);
+            AnotherGame();
         }
 
         private async void  takeButton_Click(object sender, EventArgs e)
@@ -45,9 +84,10 @@ namespace ML101
             game.PlayerTurn(Int32.Parse(PlayerPickTextBox.Text));
             StatusUpdate();
 
+            PlayerPickTextBox.Text = "";
             if (CheckVictory() != null)
                 return;
-            PlayerPickTextBox.Text = "";
+            
             await Task.Delay(1000);
             game.ComputerTurn();
             StatusUpdate();

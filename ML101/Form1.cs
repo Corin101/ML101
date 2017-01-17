@@ -28,33 +28,44 @@ namespace ML101
             gameOptions1.ButtonClick += GameOptions1_ButtonClick;
             gameWindow1.StickPickError += GameWindow1_StickPickError;
             gameWindow1.VictoryCondition += GameWindow1_VictoryCondition;
+            gameWindow1.AnotherGame += GameWindow1_AnotherGame;
             inputSticksError1.ErrorResolved += InputSticksError1_ErrorResolved;
             gameEnd1.AfterEndDecision += GameEnd1_AfterEndDecision;
+        }
+
+        private void GameWindow1_AnotherGame(bool? condition = default(bool?))
+        {
+            gameEnd1.Visible = false;
+            gameWindow1.Visible = true;
         }
 
         private void GameEnd1_AfterEndDecision(string decision)
         {
             if (decision == "Play")
-                Application.Exit();
+                gameWindow1.NewGame("Play");
             if (decision == "Exit")
+            {
+                gameWindow1.NewGame("exit"); 
                 Application.Exit();
+            }
         }
 
         private async void GameWindow1_VictoryCondition(bool? condition = default(bool?))
         {
             if (condition == true)
             {
-                await Task.Delay(1500);
+                await Task.Delay(1000);
                 gameWindow1.Visible = false;
                 gameEnd1.pictureBox1.ImageLocation = @"img\win.bmp";
                 gameEnd1.Visible = true;
             }
             if (condition == false)
             {
-                await Task.Delay(1500);
+                await Task.Delay(1000);
                 gameWindow1.Visible = false;
                 gameEnd1.pictureBox1.ImageLocation = @"img\lost.bmp";
                 gameEnd1.Visible = true;
+
             }
         }
 
