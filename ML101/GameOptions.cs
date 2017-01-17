@@ -24,8 +24,11 @@ namespace ML101
         {
             string playerName = "Player1";
             int sticks = 0;
-            if (SticksTextBox.Text != "")
-                sticks = Int32.Parse(SticksTextBox.Text);
+            if (!Int32.TryParse(SticksTextBox.Text, out sticks))
+            { 
+                WarningLabel.Visible = true;
+                return;
+            }
             if (PlayerNameTextBox.Text != "")
                 playerName = PlayerNameTextBox.Text;
 

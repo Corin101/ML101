@@ -40,16 +40,18 @@ namespace ML101
                 Application.Exit();
         }
 
-        private void GameWindow1_VictoryCondition(bool? condition = default(bool?))
+        private async void GameWindow1_VictoryCondition(bool? condition = default(bool?))
         {
             if (condition == true)
             {
+                await Task.Delay(1500);
                 gameWindow1.Visible = false;
                 gameEnd1.pictureBox1.ImageLocation = @"img\win.bmp";
                 gameEnd1.Visible = true;
             }
             if (condition == false)
             {
+                await Task.Delay(1500);
                 gameWindow1.Visible = false;
                 gameEnd1.pictureBox1.ImageLocation = @"img\lost.bmp";
                 gameEnd1.Visible = true;

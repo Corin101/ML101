@@ -38,7 +38,7 @@ namespace ML101
             }
         }
 
-        private void takeButton_Click(object sender, EventArgs e)
+        private async void  takeButton_Click(object sender, EventArgs e)
         {
             if (!LegalMoveCheck())
                 return;
@@ -48,7 +48,7 @@ namespace ML101
             if (CheckVictory() != null)
                 return;
             PlayerPickTextBox.Text = "";
-
+            await Task.Delay(1000);
             game.ComputerTurn();
             StatusUpdate();
             CheckVictory();
@@ -93,7 +93,8 @@ namespace ML101
         private bool LegalMoveCheck()
         {
             int sticksPicked = 0;
-            if (PlayerPickTextBox.Text == "")
+            
+            if (!Int32.TryParse(PlayerPickTextBox.Text, out sticksPicked))
             {
                 StickPickError();
                 return false;
