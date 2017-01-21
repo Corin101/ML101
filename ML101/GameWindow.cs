@@ -39,7 +39,7 @@ namespace ML101
             if (CheckVictory() != null)
                 return;
 
-            await Task.Delay(1000);
+            await Task.Delay(500);
             game.ComputerTurn();
             StatusUpdate();
             CheckVictory();

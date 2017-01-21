@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +30,7 @@ namespace ML101
             SticksTaken = 0;
             memory = new int[poolSize+1];
             gamescore = new int[2];
+            SetFolderPermission("save");
         }
         public string PlayerName { get; set; }
         public int NumberOfSticks { get; set; }
@@ -183,7 +186,7 @@ namespace ML101
                 }
                 sreader.Close();
             }
-            catch (FileNotFoundException e)
+            catch (FileNotFoundException)
             {
                 return false;
             }
@@ -209,5 +212,21 @@ namespace ML101
             pool[position].Add(2);
             pool[position].Add(3);
         }
+        public void SetFolderPermission(string folderPath)
+        {
+            bool exists = System.IO.Directory.Exists(folderPath);
+            if (!exists)
+            {
+                DirectoryInfo di = System.IO.Directory.CreateDirectory(folderPath);
+            }
+            var directoryInfo = new DirectoryInfo(folderPath);
+            var directorySecurity = directoryInfo.GetAccessControl();
+            var currentUserIdentity = WindowsIdentity.GetCurrent();
+            var fileSystemRule = new FileSystemAccessRule(currentUserIdentity.Name,
+                FileSystemRights.FullControl,
+                InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit,
+                PropagationFlags.None, AccessControlType.Allow);
+            directorySecurity.AddAccessRule(fileSystemRule);
+            directoryInfo.SetAccessControl(directorySecurity); }
     }
 }

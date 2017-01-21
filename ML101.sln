@@ -5,16 +5,30 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML101", "ML101\ML101.csproj", "{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Sticks", "Sticks\Sticks.vdproj", "{A7E5E5D7-29CE-4E95-AFCF-AC4B4279C4E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Debug|x86.Build.0 = Debug|Any CPU
 		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Release|Any CPU.Build.0 = Release|Any CPU
+		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Release|x86.ActiveCfg = Release|Any CPU
+		{424F62E8-EFAF-459A-AE8F-2AEBD52AF159}.Release|x86.Build.0 = Release|Any CPU
+		{A7E5E5D7-29CE-4E95-AFCF-AC4B4279C4E5}.Debug|Any CPU.ActiveCfg = Debug
+		{A7E5E5D7-29CE-4E95-AFCF-AC4B4279C4E5}.Debug|x86.ActiveCfg = Debug
+		{A7E5E5D7-29CE-4E95-AFCF-AC4B4279C4E5}.Debug|x86.Build.0 = Debug
+		{A7E5E5D7-29CE-4E95-AFCF-AC4B4279C4E5}.Release|Any CPU.ActiveCfg = Release
+		{A7E5E5D7-29CE-4E95-AFCF-AC4B4279C4E5}.Release|x86.ActiveCfg = Release
+		{A7E5E5D7-29CE-4E95-AFCF-AC4B4279C4E5}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
