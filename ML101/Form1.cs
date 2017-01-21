@@ -149,5 +149,11 @@ namespace ML101
                                          (control.Parent.ClientSize.Height / 2) - (control.Height / 2));
             control.Refresh();
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            gameWindow1.NewGame("exit");
+            Application.Exit();
+        }
     }
 }

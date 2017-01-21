@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ML101
 {
@@ -34,11 +36,12 @@ namespace ML101
 
         public void  AllocatePool()
         {
+            if (!LoadHardMemory())
             for (int position = 0; position < poolSize+1; position++)
             {
                 pool[position] = new List<int>();
                 InitialListFill(position);
-            }                      
+            }              
         }
 
         public void PlayerTurn(int number)
@@ -51,11 +54,13 @@ namespace ML101
 
         public void ComputerTurn()
         {
-            int randomNumber = randomGenerator.Next(0,pool[NumberOfSticks].Count );
             if (NumberOfSticks == 1)
                 SticksTaken = 1;
             else
-            SticksTaken = pool[NumberOfSticks].ElementAt(randomNumber);
+            {
+                int randomNumber = randomGenerator.Next(0, pool[NumberOfSticks].Count);
+                SticksTaken = pool[NumberOfSticks].ElementAt(randomNumber);
+            }
             memory[NumberOfSticks] = SticksTaken;
             NumberOfSticks -= SticksTaken;
             if (NumberOfSticks == 0)
@@ -65,11 +70,28 @@ namespace ML101
         public void SaveSoftMemory()
         {
             int i = 0;
-            foreach (int value in memory)
-            {       
-                if (value != 0)
-                    pool[i].Add(value);
-                i++;
+            if (VictoryCondition == false)
+            {
+                foreach (int value in memory)
+                {
+                    if (value != 0)
+                        pool[i].Add(value);
+                    i++;
+                }
+            }
+            else
+            {
+                foreach (int value in memory)
+                {
+                    int lastIndex;
+                    if (value != 0)
+                    {
+                        lastIndex = pool[i].FindLastIndex(x => x == value);
+                        if (lastIndex > 3)
+                            pool[i].RemoveAt(lastIndex);
+                    }
+                    i++;
+                }
             }
             NewMemory();
         }
@@ -80,7 +102,92 @@ namespace ML101
 
         public void SaveHardMemory()
         {
+            int i = 0;
+            string location = Application.StartupPath;
+            FileStream fs;
 
+            if (!File.Exists(location + @"\save\mind.txt"))
+            {
+                fs = File.Create(location + @"\save\mind.txt");
+                fs.Close();
+            }
+
+            StreamReader sreader = new StreamReader(location + @"\save\mind.txt");
+            StreamWriter swriter = new StreamWriter(location + @"\save\test.txt");
+
+            foreach (List<int> value in pool)
+            {
+                int j = 1;
+                int count = 0;
+                if (value != null)
+                    count = value.Count;
+                try
+                {
+                    foreach (int number in value)
+                    {
+                        if (j < count)
+                            swriter.Write(number + " ");
+                        else
+                            swriter.Write(number);
+                        j++;
+                    }                   
+                }
+                catch (Exception)
+                {
+                    swriter.WriteLine("");
+                    continue;
+                }
+                swriter.WriteLine("");       
+            }
+
+            while (true)
+            {
+                sreader.ReadLine();
+                if (poolSize == i)
+                {
+                    swriter.Write(sreader.ReadToEnd());
+                    break;
+                }
+                i++;
+            }
+            sreader.Close();
+            swriter.Close();
+            File.Delete(location + @"\save\mind.txt");
+            File.Move(location + @"\save\test.txt", location + @"\save\mind.txt");
+            File.Delete(location + @"\save\test.txt");
+        }
+
+        private bool LoadHardMemory()
+        {
+            string location = Application.StartupPath;
+            string line;
+            int[] numbers;
+            int i = 0;
+            try
+            {
+                StreamReader sreader  = new StreamReader(location + @"\save\mind.txt");               
+                line = sreader.ReadLine();
+                while (line != null && i < poolSize + 1)
+                {
+                    if (line != "")
+                    {
+                        pool[i] = new List<int>();
+                        numbers = line.Split(' ').Select(str => int.Parse(str)).ToArray();
+                        foreach (int number in numbers)
+                        {
+                            pool[i].Add(number);
+                        }
+                    }
+                    i++;
+                    line = sreader.ReadLine();
+                }
+                sreader.Close();
+            }
+            catch (FileNotFoundException e)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void InitialListFill(int position)

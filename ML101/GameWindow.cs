@@ -28,6 +28,22 @@ namespace ML101
             game.AllocatePool();
             NewDisplay();
         }
+        private async void takeButton_Click(object sender, EventArgs e)
+        {
+            if (!LegalMoveCheck())
+                return;
+            game.PlayerTurn(Int32.Parse(PlayerPickTextBox.Text));
+            StatusUpdate();
+
+            PlayerPickTextBox.Text = "";
+            if (CheckVictory() != null)
+                return;
+
+            await Task.Delay(1000);
+            game.ComputerTurn();
+            StatusUpdate();
+            CheckVictory();
+        }
         private void NewDisplay( bool NewGame = true)
         {
             DisplayTextBox.Clear();
@@ -53,18 +69,26 @@ namespace ML101
         {
             if (game.VictoryCondition == true)
             {
-                game.SaveSoftMemory();            
+                game.SaveSoftMemory();
+                if (condition == "exit")
+                {
+                    game.SaveHardMemory();
+                    return;
+                }      
                 game.gamescore[0] += 1;
                 SetNewGame();
             }
             else
             {
-                game.NewMemory();
+                game.SaveSoftMemory();
+                if (condition == "exit")
+                {
+                    game.SaveHardMemory();
+                    return;
+                }
                 game.gamescore[1] += 1;
                 SetNewGame();
             }
-            if (condition == "exit")
-                game.SaveHardMemory();
         }
 
         private void SetNewGame()
@@ -77,22 +101,6 @@ namespace ML101
             AnotherGame();
         }
 
-        private async void  takeButton_Click(object sender, EventArgs e)
-        {
-            if (!LegalMoveCheck())
-                return;
-            game.PlayerTurn(Int32.Parse(PlayerPickTextBox.Text));
-            StatusUpdate();
-
-            PlayerPickTextBox.Text = "";
-            if (CheckVictory() != null)
-                return;
-            
-            await Task.Delay(1000);
-            game.ComputerTurn();
-            StatusUpdate();
-            CheckVictory();
-        }
         private void StatusUpdate()
         {
             WriteResult();
