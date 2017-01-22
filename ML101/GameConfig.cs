@@ -37,6 +37,10 @@ namespace ML101
         public bool? VictoryCondition { get; set; }
         public int SticksTaken { get; set; }
 
+        /// <summary>
+        /// loading of previoud game status if save file exists, if not
+        /// initial alocation of lists in the pool.
+        /// </summary>
         public void  AllocatePool()
         {
             if (!LoadHardMemory())
@@ -46,7 +50,10 @@ namespace ML101
                 InitialListFill(position);
             }              
         }
-
+        /// <summary>
+        /// resolving player turn and checking for end game condition
+        /// </summary>
+        /// <param name="number"> number of sticks taken by the player</param>
         public void PlayerTurn(int number)
         {
             SticksTaken = number;
@@ -54,7 +61,10 @@ namespace ML101
             if (NumberOfSticks == 0)
                 VictoryCondition = false;
         }
-
+        /// <summary>
+        /// generating a random move from the list at the position of the turn, determened
+        /// by the amount off sticks left in the game. victory condition check.
+        /// </summary>
         public void ComputerTurn()
         {
             if (NumberOfSticks == 1)
@@ -69,7 +79,10 @@ namespace ML101
             if (NumberOfSticks == 0)
                 VictoryCondition = true;
         }
-
+        /// <summary>
+        /// after a game is played, current game is added in to pool, numbers are
+        /// removed/added from the list, depending on the vitory condition
+        /// </summary>
         public void SaveSoftMemory()
         {
             int i = 0;
@@ -98,11 +111,18 @@ namespace ML101
             }
             NewMemory();
         }
+        /// <summary>
+        /// memory cleanup after each game (and initial setup of memory)
+        /// </summary>
         public void NewMemory()
         {
             memory = new int[poolSize + 1];
         }
-
+        /// <summary>
+        /// if mind.txt does not exist, we create it, than save all the pool data
+        /// into the txt file, If the file exisits, save the pool data into the
+        /// file, and append the rest of the file dat.
+        /// </summary>
         public void SaveHardMemory()
         {
             int i = 0;
@@ -159,7 +179,11 @@ namespace ML101
             File.Move(location + @"\save\test.txt", location + @"\save\mind.txt");
             File.Delete(location + @"\save\test.txt");
         }
-
+        /// <summary>
+        /// Tries to load the data from mind.txt file. If the file does not exist
+        /// returns false so the initial data can be loaded.
+        /// </summary>
+        /// <returns>true if the load file is done. False if the file does not exsist</returns>
         private bool LoadHardMemory()
         {
             string location = Application.StartupPath;
@@ -192,7 +216,10 @@ namespace ML101
             }
             return true;
         }
-
+        /// <summary>
+        /// loads initial numbers for lists (1,2,3)
+        /// </summary>
+        /// <param name="position">position of which list to fill</param>
         private void InitialListFill(int position)
         {
             if (position == 0)
@@ -212,6 +239,11 @@ namespace ML101
             pool[position].Add(2);
             pool[position].Add(3);
         }
+        /// <summary>
+        /// sets the folder permission to full control, so that the application
+        /// can make new files in save folder.
+        /// </summary>
+        /// <param name="folderPath">path of the folder</param>
         public void SetFolderPermission(string folderPath)
         {
             bool exists = System.IO.Directory.Exists(folderPath);

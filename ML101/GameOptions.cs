@@ -37,7 +37,9 @@ namespace ML101
             else
                 ButtonClick(playerName, sticks.ToString());
         }
-
+        /// <summary>
+        /// Checks if Eneter key was pressed
+        /// </summary>
         private void SticksTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

@@ -21,13 +21,19 @@ namespace ML101
         {
             InitializeComponent();        
         }
-        /* start game method, configures the array and it's list (allocating the initial options) */
+        /// <summary>
+        /// start game method, configures the array and it's list (allocating the initial options)
+        /// </summary>
         public void StartGame()
         {
             game = new GameConfig(Int32.Parse(SticksInGame.Text), PlayerNameLabel.Text);
             game.AllocatePool();
             NewDisplay();
         }
+        /// <summary>
+        /// Turn sequence (player turn, computer turn)
+        /// </summary>
+
         private async void takeButton_Click(object sender, EventArgs e)
         {
             if (!LegalMoveCheck())
@@ -44,6 +50,11 @@ namespace ML101
             StatusUpdate();
             CheckVictory();
         }
+        /// <summary>
+        /// Displayes the game status to the screen, if not the first game,
+        /// displays current win/loss ratio.
+        /// </summary>
+        /// <param name="NewGame"></param>
         private void NewDisplay( bool NewGame = true)
         {
             DisplayTextBox.Clear();
@@ -57,7 +68,9 @@ namespace ML101
             DisplayTextBox.AppendText("Sticks left in the game:: " + SticksInGame.Text);
             DisplayTextBox.AppendText(Environment.NewLine);
         }
-        /* checkup if enter is pressed */
+        /// <summary>
+        /// checkup if enter is pressed
+        /// </summary>
         private void PlayerPickTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -65,6 +78,12 @@ namespace ML101
                 takeButton_Click(this, new EventArgs());
             }
         }
+        /// <summary>
+        /// after game setup, adding the memory of last game to the pool
+        /// setup of new game, or saving everything to mind.txt if exit
+        /// was pressed
+        /// </summary>
+        /// <param name="condition">new game or exit game</param>
         public void NewGame(string condition)
         {
             if (game.VictoryCondition == true)
@@ -90,7 +109,10 @@ namespace ML101
                 SetNewGame();
             }
         }
-
+        /// <summary>
+        /// New game setup, reseting the victory condition, reseting
+        /// number of sticks and current player.
+        /// </summary>
         private void SetNewGame()
         {
             game.NumberOfSticks = game.poolSize;
@@ -100,14 +122,18 @@ namespace ML101
             NewDisplay(false);
             AnotherGame();
         }
-
+        /// <summary>
+        /// Updates the current game status screen after each turn
+        /// </summary>
         private void StatusUpdate()
         {
             WriteResult();
             SticksInGame.Text = game.NumberOfSticks.ToString();
             SetName();
         }
-
+        /// <summary>
+        /// Display screen message after each turn
+        /// </summary>
         private void WriteResult()
         {
             DisplayTextBox.AppendText(PlayerNameLabel.Text + " has taken " + game.SticksTaken.ToString() + " sticks.");
@@ -115,7 +141,9 @@ namespace ML101
             DisplayTextBox.AppendText("Sticks left in the game:: " + game.NumberOfSticks.ToString());
             DisplayTextBox.AppendText(Environment.NewLine);
         }
-
+        /// <summary>
+        /// Sets the name on the display for the current player
+        /// </summary>
         private void SetName()
         {
             if (PlayerNameLabel.Text == "Computer")
@@ -123,6 +151,10 @@ namespace ML101
             else
                 PlayerNameLabel.Text = "Computer";
         }
+        /// <summary>
+        /// Victory condition checkup
+        /// </summary>
+        /// <returns>true if player won, false if computer won, null if game still in progress</returns>
         private bool? CheckVictory()
         {
             if (game.VictoryCondition == false)
@@ -137,7 +169,10 @@ namespace ML101
             }
             return null;
         }
-
+        /// <summary>
+        /// Checks if the player picked the correct amount of sticks (1-3)
+        /// </summary>
+        /// <returns></returns>
         private bool LegalMoveCheck()
         {
             int sticksPicked = 0;
